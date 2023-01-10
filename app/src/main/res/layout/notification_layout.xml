@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="243dp"
+    android:background="#fff"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/notify_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:text="Urgent"
+        android:textColor="#ff0000" />
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="15dp"
+        android:text="The unsafe apps may put your privacy at risk"
+        android:textColor="#000"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/btn_nc_cancel"
+            android:layout_width="0dp"
+            android:layout_height="47dp"
+            android:layout_marginEnd="9dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_notification_cancel_btn_bg"
+            android:gravity="center"
+            android:text="LATER"
+            android:textColor="#141414"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/btn_nc_confirm"
+            android:layout_width="0dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="9dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_notification_confirm_btn_bg"
+            android:gravity="center"
+            android:text="OPTIMIZE"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

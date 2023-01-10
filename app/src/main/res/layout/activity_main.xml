@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="18sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_notification_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="总开关设置" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_urgent_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="去紧急通知渠道设置" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_permanent_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="去常驻通知渠道设置" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_apply_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="动态申请通知权限" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_create_channel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="创建渠道" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_show_permanent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="显示常驻通知" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_show_urgent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="显示紧急通知" />
+
+
+</LinearLayout>
