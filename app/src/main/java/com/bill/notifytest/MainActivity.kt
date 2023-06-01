@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 NotificationUtils.showNotification(this)
             }
             R.id.btn_notification_setting -> {
-                NotifyManager.gotoNotificationSetting(this)
+                NotifyManager.gotoNotificationSetting(applicationContext)
             }
             R.id.btn_urgent_setting -> {
                 gotoChannelSetting(NotifyManager.CHANNEL_ID_URGENT)

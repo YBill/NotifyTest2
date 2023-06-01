@@ -4,6 +4,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import androidx.annotation.RequiresApi
@@ -114,19 +115,39 @@ object NotifyManager {
      */
     fun gotoNotificationSetting(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val intent = Intent()
-            intent.action = Settings.ACTION_APP_NOTIFICATION_SETTINGS;
-            intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
-            intent.putExtra(Settings.EXTRA_CHANNEL_ID, context.applicationInfo.uid)
-            intent.putExtra("app_package", context.packageName)
-            intent.putExtra("app_uid", context.applicationInfo.uid)
-            context.startActivity(intent)
+            try {
+                val intent = Intent()
+                intent.action = Settings.ACTION_APP_NOTIFICATION_SETTINGS;
+                intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+                intent.putExtra(Settings.EXTRA_CHANNEL_ID, context.applicationInfo.uid)
+                intent.putExtra("app_package", context.packageName)
+                intent.putExtra("app_uid", context.applicationInfo.uid)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+                context.startActivity(intent)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                gotoAppSetting(context)
+            }
         } else {
-            val intent = Intent()
-            intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
-            intent.putExtra("app_package", context.packageName)
-            intent.putExtra("app_uid", context.applicationInfo.uid)
-            context.startActivity(intent)
+            gotoAppSetting(context)
         }
     }
+
+    fun gotoAppSetting(context: Context) {
+        try {
+            val settingsIntent = Intent()
+            settingsIntent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+            settingsIntent.addCategory(Intent.CATEGORY_DEFAULT)
+            settingsIntent.data = Uri.parse("package:" + context.packageName)
+            settingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            settingsIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            settingsIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+            context.startActivity(settingsIntent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
 }
