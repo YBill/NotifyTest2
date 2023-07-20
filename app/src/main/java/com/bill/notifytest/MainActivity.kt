@@ -1,8 +1,10 @@
 package com.bill.notifytest
 
+import android.app.Presentation
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.hardware.display.DisplayManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +12,15 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.btn_apply_notification
+import kotlinx.android.synthetic.main.activity_main.btn_create_channel
+import kotlinx.android.synthetic.main.activity_main.btn_notification_setting
+import kotlinx.android.synthetic.main.activity_main.btn_permanent_setting
+import kotlinx.android.synthetic.main.activity_main.btn_show_permanent
+import kotlinx.android.synthetic.main.activity_main.btn_show_presentation
+import kotlinx.android.synthetic.main.activity_main.btn_show_urgent
+import kotlinx.android.synthetic.main.activity_main.btn_urgent_setting
+import kotlinx.android.synthetic.main.activity_main.tv_message
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +73,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btn_urgent_setting.setOnClickListener(this)
         btn_permanent_setting.setOnClickListener(this)
         btn_apply_notification.setOnClickListener(this)
+        btn_show_presentation.setOnClickListener(this)
     }
 
     private fun areChannelsEnabled(channelId: String): Boolean {
@@ -94,23 +105,33 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val result = NotifyManager.createNotificationChannel(this)
                 Log.i("Bill", "createChannel is $result")
             }
+
             R.id.btn_show_permanent -> {
                 startPermanentService(applicationContext)
             }
+
             R.id.btn_show_urgent -> {
                 NotificationUtils.showNotification(this)
             }
+
             R.id.btn_notification_setting -> {
                 NotifyManager.gotoNotificationSetting(applicationContext)
             }
+
             R.id.btn_urgent_setting -> {
                 gotoChannelSetting(NotifyManager.CHANNEL_ID_URGENT)
             }
+
             R.id.btn_permanent_setting -> {
                 gotoChannelSetting(NotifyManager.CHANNEL_ID_PERMANENT)
             }
+
             R.id.btn_apply_notification -> {
                 requestNotificationPermission(this)
+            }
+
+            R.id.btn_show_presentation -> {
+                handlePresentation()
             }
         }
     }
@@ -156,5 +177,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
     }
+
+    private fun handlePresentation() {
+        try {
+            val displayManager = getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
+            val virtualDisplay = displayManager.createVirtualDisplay(
+                "virtual_display_dialog",
+                500,
+                500,
+                500,
+                null,
+                0
+            )
+            val presentation = Presentation(applicationContext, virtualDisplay.getDisplay())
+            presentation.show()
+            presentation.dismiss()
+            Log.e("Bill", "Presentation show")
+        } catch (e: Exception) {
+            throw RuntimeException(e)
+        }
+    }
+
 
 }
