@@ -22,6 +22,9 @@ object NotificationUtils {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setFullScreenIntent(getLockScreenIntent(context), true)
 
+        // 设置这个桌面icon出角标（貌似设一个就行，还不能为""）
+        builder.setContentTitle("1").setContentText("1")
+
         val notification = builder.build()
 
         val notificationManager =
