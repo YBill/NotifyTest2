@@ -12,10 +12,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.bill.notifytest.media.ui.MediaActivity
 import kotlinx.android.synthetic.main.activity_main.btn_apply_notification
 import kotlinx.android.synthetic.main.activity_main.btn_create_channel
 import kotlinx.android.synthetic.main.activity_main.btn_notification_setting
 import kotlinx.android.synthetic.main.activity_main.btn_permanent_setting
+import kotlinx.android.synthetic.main.activity_main.btn_show_media
 import kotlinx.android.synthetic.main.activity_main.btn_show_permanent
 import kotlinx.android.synthetic.main.activity_main.btn_show_presentation
 import kotlinx.android.synthetic.main.activity_main.btn_show_urgent
@@ -74,6 +76,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btn_permanent_setting.setOnClickListener(this)
         btn_apply_notification.setOnClickListener(this)
         btn_show_presentation.setOnClickListener(this)
+        btn_show_media.setOnClickListener(this)
     }
 
     private fun areChannelsEnabled(channelId: String): Boolean {
@@ -132,6 +135,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.btn_show_presentation -> {
                 handlePresentation()
+            }
+
+            R.id.btn_show_media -> {
+                startActivity(Intent(this, MediaActivity::class.java))
             }
         }
     }

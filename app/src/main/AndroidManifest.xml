@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name=".App"
@@ -44,7 +44,30 @@
             android:theme="@style/LockScreenTheme" />
 
         <receiver android:name=".NotificationExitReceiver" />
+
         <service android:name=".PermanentService" />
+
+        <service
+            android:name=".media.service.MusicService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="androidx.media.session.MediaButtonReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+        <activity
+            android:name=".media.ui.MediaActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+
     </application>
 
 </manifest>
