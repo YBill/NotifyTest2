@@ -70,6 +70,12 @@ public class MediaActivity extends AppCompatActivity {
         initUI();
         // 初始化MediaBrowser
         initMediaBrowser();
+
+        Button stopBtn = findViewById(R.id.stop_btn);
+        stopBtn.setOnClickListener(v -> {
+//            mMediaBrowserManager.getTransportControls().pause();
+            mMediaBrowserManager.getTransportControls().stop();
+        });
     }
 
     @Override

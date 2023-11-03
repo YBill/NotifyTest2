@@ -88,4 +88,12 @@
         android:paddingTop="16dp"
         android:paddingBottom="16dp" />
 
+    <Button
+        android:id="@+id/stop_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:text="Stop" />
+
 </RelativeLayout>

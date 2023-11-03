@@ -47,10 +47,17 @@
 
         <service android:name=".PermanentService" />
 
+        <!--<service android:name=".media.service.MusicService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </service>-->
+
+        <!-- android:exported="false"为true在某些手机上stop后通知栏关不了 -->
         <service
             android:name=".media.service.MusicService"
-            android:enabled="true"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
@@ -58,11 +65,12 @@
 
         <receiver
             android:name="androidx.media.session.MediaButtonReceiver"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
+
         <activity
             android:name=".media.ui.MediaActivity"
             android:exported="true"
